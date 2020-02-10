@@ -11,7 +11,7 @@ package vectors;
  */
 public class Point4 extends Point3{
     double w;
-    public Point4(double x, double y, double z, double w) {
+    public Point4(double x, double y, double w, double z) {
         super(x, y, z);
         this.w = w;
     }
