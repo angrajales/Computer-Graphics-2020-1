@@ -1,6 +1,6 @@
-package org.sample;
-
-
+/**
+ * @author Anderson, Stiven
+ */
 import javax.swing.*;
 import java.awt.*;
 import java.io.BufferedReader;

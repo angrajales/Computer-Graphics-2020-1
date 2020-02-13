@@ -1,5 +1,6 @@
-package org.sample;
-
+/**
+ * @author Anderson, Stiven
+ */
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
