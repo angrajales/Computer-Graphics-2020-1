@@ -1,5 +1,11 @@
+package transformations2d;
+
 /**
- * @author Anderson, Stiven
+ * 
+ * @author Anderson Grajales Alzate
+ * @author Stiven Ramírez Arango
+ * @date 14/02/2020
+ * @version 1.0
  */
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -9,11 +15,13 @@ import java.io.File;
 import java.io.IOException;
 
 public class FileUtils {
+    
     private static final String C_OUT_FILE_NAME = "classwork.png";
     private static final String H_OUT_FILE_NAME = "homework.png";
     private static final String OUT_FILE_FORMAT = "png";
 
     public static void printImage(boolean classwork, JFrame currentFrame) {
+        
         String fileName = H_OUT_FILE_NAME;
         if (classwork) fileName = C_OUT_FILE_NAME;
         if (!new File(fileName).exists()) {
@@ -27,5 +35,6 @@ public class FileUtils {
                 e.printStackTrace();
             }
         }
+        
     }
 }

@@ -1,5 +1,11 @@
+package transformations2d;
+
 /**
- * @author Anderson, Stiven
+ * 
+ * @author Anderson Grajales Alzate
+ * @author Stiven Ramírez Arango
+ * @date 14/02/2020
+ * @version 1.0
  */
 import javax.swing.*;
 import java.awt.*;
@@ -8,11 +14,11 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class EdgeDrawer extends JPanel {
+    
     private static final String FILE_NAME = "edges.txt";
     private static final String FILE_PATH = "";
     private Logger logger = Logger.getLogger(EdgeDrawer.class.getName());
@@ -95,13 +101,11 @@ public class EdgeDrawer extends JPanel {
         FileUtils.printImage(false, frame);
     }
 
-    private static class Pair {
-        private int x;
-        private int y;
-
-        public Pair() {
-        }
-
+    public static class Pair {
+        
+        public int x;
+        public int y;
+        
         public Pair(int x, int y) {
             this.x = x;
             this.y = y;

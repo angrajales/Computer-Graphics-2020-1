@@ -1,5 +1,11 @@
+package transformations2d;
+
 /**
- * @author Anderson, Stiven
+ * 
+ * @author Anderson Grajales Alzate
+ * @author Stiven Ramírez Arango
+ * @date 14/02/2020
+ * @version 1.0
  */
 public class Matrix4x4 {
     
