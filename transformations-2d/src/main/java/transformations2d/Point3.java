@@ -1,4 +1,4 @@
-package transformations2d;
+package transformations;
 
 /**
  * 
@@ -17,6 +17,11 @@ public class Point3 {
         this.x = x;
         this.y = y;
         this.w = w;
+    }
+    public Point3(double x, double y){
+        this.x = x;
+        this.y = y;
+        this.w = 1;
     }
     
     public double magnitude(){

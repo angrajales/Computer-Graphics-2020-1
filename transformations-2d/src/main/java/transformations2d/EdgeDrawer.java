@@ -1,4 +1,4 @@
-package transformations2d;
+package transformations;
 
 /**
  * 
@@ -22,8 +22,8 @@ public class EdgeDrawer extends JPanel {
     private static final String FILE_NAME = "edges.txt";
     private static final String FILE_PATH = "";
     private Logger logger = Logger.getLogger(EdgeDrawer.class.getName());
-    private ArrayList<Pair> edges;
-    private ArrayList<Pair> vertices;
+    private ArrayList<PairInt> edges;
+    private ArrayList<PairInt> vertices;
     private static final int MAX_WIDTH = 800;
     private static final int MAX_HEIGHT = 800;
 
@@ -39,12 +39,12 @@ public class EdgeDrawer extends JPanel {
                     String[] points = reader.readLine().split(" ");
                     int x = Integer.parseInt(points[0]);
                     int y = Integer.parseInt(points[1]);
-                    vertices.add(new Pair(x, y));
+                    vertices.add(new PairInt(x, y));
                 }
                 int nEdges = Integer.parseInt(reader.readLine());
                 for (int i = 0; i < nEdges; ++i) {
                     String[] edgs = reader.readLine().split(" ");
-                    edges.add(new Pair(Integer.parseInt(edgs[0]), Integer.parseInt(edgs[1])));
+                    edges.add(new PairInt(Integer.parseInt(edgs[0]), Integer.parseInt(edgs[1])));
                 }
             } catch (IOException ex) {
                 logger.log(Level.SEVERE, ex.getMessage(), ex);
@@ -72,15 +72,43 @@ public class EdgeDrawer extends JPanel {
         g2d.drawLine(w / 2, 0, w / 2, h);
         g2d.drawLine(0, h / 2, w, h / 2);
         paintEdges(g2d, w, h);
+        translate(w, h, 50, 25, g2d);
+        rotate(w, h, 25.0, g2d);
+    }
+    public void translate(int w, int h, int dx, int dy, Graphics2D g2d){
+        Transformation transformation = new Transformation();
+        g2d.setColor(Color.WHITE);
+        int transX = w / 2;
+        int transY = h / 2;
+        for (PairInt edge : edges) {
+            PairInt from = vertices.get(edge.getX());
+            PairInt to = vertices.get(edge.getY());
+            PairInt newFrom = transformation.translate(new Point3(from.x, from.y), dx, dy);
+            PairInt newTo = transformation.translate(new Point3(to.x, to.y), dx, dy);
+            g2d.drawLine(transX + newFrom.getX(), transY - newFrom.getY(), transX + newTo.getX(), transY - newTo.getY());
+        }
+    }
+    public void rotate(int w, int h, double theta, Graphics2D g2d){
+        Transformation transformation = new Transformation();
+        g2d.setColor(Color.GREEN);
+        int transX = w / 2;
+        int transY = h / 2;
+        for (PairInt edge : edges) {
+            PairInt from = vertices.get(edge.getX());
+            PairInt to = vertices.get(edge.getY());
+            PairInt newFrom = transformation.rotate(new Point3(from.x, from.y), theta);
+            PairInt newTo = transformation.rotate(new Point3(to.x, to.y), theta);
+            g2d.drawLine(transX + newFrom.getX(), transY - newFrom.getY(), transX + newTo.getX(), transY - newTo.getY());
+        }
     }
 
     public void paintEdges(Graphics2D g2d, int w, int h) {
         readFile();
         int transX = w / 2;
         int transY = h / 2;
-        for (Pair edge : edges) {
-            Pair from = vertices.get(edge.getX());
-            Pair to = vertices.get(edge.getY());
+        for (PairInt edge : edges) {
+            PairInt from = vertices.get(edge.getX());
+            PairInt to = vertices.get(edge.getY());
             g2d.drawLine(transX + from.getX(), transY - from.getY(), transX + to.getX(), transY - to.getY());
 
         }
@@ -101,12 +129,12 @@ public class EdgeDrawer extends JPanel {
         FileUtils.printImage(false, frame);
     }
 
-    public static class Pair {
+    public static class PairInt {
         
         public int x;
         public int y;
         
-        public Pair(int x, int y) {
+        public PairInt(int x, int y) {
             this.x = x;
             this.y = y;
         }
