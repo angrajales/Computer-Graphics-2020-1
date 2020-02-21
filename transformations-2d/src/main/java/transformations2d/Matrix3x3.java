@@ -1,5 +1,3 @@
-package transformations;
-
 /**
  * 
  * @author Anderson Grajales Alzate
@@ -35,32 +33,6 @@ public class Matrix3x3 {
             }
         }
         return solution;
-    }
-    public static Matrix3x3 translationMatrix(int dx, int dy){
-        Matrix3x3 matrix = new Matrix3x3();
-        matrix.matrix[0][0] = 1;
-        matrix.matrix[0][1] = 0;
-        matrix.matrix[0][2] = dx;
-        matrix.matrix[1][0] = 0;
-        matrix.matrix[1][1] = 1;
-        matrix.matrix[1][2] = dy;
-        matrix.matrix[2][0] = 0;
-        matrix.matrix[2][1] = 0;
-        matrix.matrix[2][2] = 1;
-        return matrix;
-    }
-    public static Matrix3x3 rotationMatrix(double theta){
-        Matrix3x3 matrix = new Matrix3x3();
-        matrix.matrix[0][0] = Math.cos(theta);
-        matrix.matrix[0][1] = -Math.sin(theta);
-        matrix.matrix[0][2] = 0;
-        matrix.matrix[1][0] = Math.sin(theta);
-        matrix.matrix[1][1] = Math.cos(theta);
-        matrix.matrix[1][2] = 0;
-        matrix.matrix[2][0] = 0;
-        matrix.matrix[2][1] = 0;
-        matrix.matrix[2][2] = 1;
-        return matrix;
     }
     
  

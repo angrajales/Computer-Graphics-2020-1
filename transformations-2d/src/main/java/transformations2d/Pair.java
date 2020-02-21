@@ -1,36 +1,33 @@
-package transformations;
-
 /**
- * 
  * @author Anderson Grajales Alzate
  * @author Stiven Ramírez Arango
- * @date 14/02/2020
  * @version 1.0
+ * @date 14/02/2020
  */
-public class Pair {
-    
-    public double x;
-    public double y;
-    
-    public Pair(double x, double y) {
+public class Pair<Type> {
+
+    public Type x;
+    public Type y;
+
+    public Pair(Type x, Type y) {
         this.x = x;
         this.y = y;
     }
-    
-    public double getX() {
+
+    public Type getX() {
         return x;
     }
-    
-    public void setX(double x) {
+
+    public void setX(Type x) {
         this.x = x;
     }
- 
-    public double getY() {
+
+    public Type getY() {
         return y;
     }
-    
-    public void setY(double y) {
+
+    public void setY(Type y) {
         this.y = y;
     }
-    
+
 }
