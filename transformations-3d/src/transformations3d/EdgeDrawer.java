@@ -1,3 +1,4 @@
+package transformations3d;
 /**
  * @author Anderson Grajales Alzate
  * @author Stiven Ramírez Arango
@@ -58,6 +59,7 @@ public class EdgeDrawer extends JPanel implements KeyListener {
                     String[] points = reader.readLine().split(" ");
                     int x = Integer.parseInt(points[0]);
                     int y = Integer.parseInt(points[1]);
+                    int z = Integer.parseInt(points[2]);
                     vertices.add(new Pair<>(x, y));
                 }
                 int nEdges = Integer.parseInt(reader.readLine());
