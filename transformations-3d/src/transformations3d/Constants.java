@@ -1,4 +1,11 @@
 package transformations3d;
+/**
+ * @author Anderson Grajales Alzate
+ * @author Stiven Ramírez Arango
+ * @date 08/03/2020
+ * @version 1.0
+ */
+
 import static java.lang.Math.*;
 public class Constants {
 	public static final int MAX_WIDTH = 1000;
@@ -93,5 +100,14 @@ public class Constants {
 		translationMatrix.matrix[2][3] = tw;
 		return translationMatrix;
 	}
+        
+        private static Matrix4x4 scalingMatrix = new Matrix4x4();
+        public static final Matrix4x4 getScalingMatrix(double sx, double sy, double sz) {
+                scalingMatrix.matrix[0][0] = sx;
+                scalingMatrix.matrix[1][1] = sy;
+                scalingMatrix.matrix[2][2] = sz;
+                scalingMatrix.matrix[3][3] = 1;
+                return scalingMatrix;
+        }
 	
 }

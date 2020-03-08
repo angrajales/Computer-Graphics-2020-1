@@ -1,4 +1,10 @@
 package transformations3d;
+/**
+ * @author Anderson Grajales Alzate
+ * @author Stiven Ramírez Arango
+ * @date 08/03/2020
+ * @version 1.0
+ */
 
 import java.awt.Color;
 import java.awt.Graphics;
@@ -149,6 +155,12 @@ public class Main extends JPanel implements KeyListener {
 		if(key == 'z' || key == 'Z') {
 			leavePlane(1);
 		}
+                if(key == 'y' || key == 'Y') {
+                        scale(-1);
+                }
+                if(key == 'h' || key == 'H') {
+                        scale(1);
+                }
 	}
 
 	private void rotateZ(boolean clockwise) {
@@ -190,7 +202,10 @@ public class Main extends JPanel implements KeyListener {
 		projectionDistance += (dir * move);
 		repaint();
 	}
-	
+        private void scale(double dir) {
+                var scale = Constants.getScalingMatrix(dir * move, dir * move, 0);
+                doStep(scale, false);
+        }
 
 	private void doStep(Matrix4x4 mat, boolean needsPivot) {
 		if (needsPivot) {
