@@ -16,10 +16,10 @@ public class Matrix4x4 {
     
     public static Point4 times(Matrix4x4 m, Point4 p) {
         Point4 result = new Point4(0, 0, 0, 0);
-        result.x = (m.matrix[0][0] * p.x) + (m.matrix[0][1] * p.y) + (m.matrix[0][2] * p.z) + (m.matrix[0][3] * p.w);
-        result.y = (m.matrix[1][0] * p.x) + (m.matrix[1][1] * p.y) + (m.matrix[1][2] * p.z) + (m.matrix[1][3] * p.w);
-        result.z = (m.matrix[2][0] * p.x) + (m.matrix[2][1] * p.y) + (m.matrix[2][2] * p.z) + (m.matrix[2][3] * p.w);
-        result.w = (m.matrix[3][0] * p.x) + (m.matrix[3][1] * p.y) + (m.matrix[3][2] * p.z) + (m.matrix[3][3] * p.w);
+        result.x = (m.matrix[0][0] * p.x) + (m.matrix[0][1] * p.y) + (m.matrix[0][2] * p.w) + (m.matrix[0][3] * p.z);
+        result.y = (m.matrix[1][0] * p.x) + (m.matrix[1][1] * p.y) + (m.matrix[1][2] * p.w) + (m.matrix[1][3] * p.z);
+        result.w = (m.matrix[2][0] * p.x) + (m.matrix[2][1] * p.y) + (m.matrix[2][2] * p.w) + (m.matrix[2][3] * p.z);
+        result.z = (m.matrix[3][0] * p.x) + (m.matrix[3][1] * p.y) + (m.matrix[3][2] * p.w) + (m.matrix[3][3] * p.z);
         return result;
     }
     
