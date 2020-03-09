@@ -250,7 +250,7 @@ public class Main extends JPanel implements KeyListener {
 		});	
 	}
 	
-	void doScale(boolean bigger) {
+	private void doScale(boolean bigger) {
 		Point4 pivot = getPivot();
 		double pure = bigger ? (1.1) : (0.9);
 		Matrix4x4 mat = Constants.getScalingMatrix(pure, pure, pure, pivot);
