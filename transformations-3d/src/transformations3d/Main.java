@@ -203,8 +203,8 @@ public class Main extends JPanel implements KeyListener {
 		repaint();
 	}
         private void scale(double dir) {
-                var scale = Constants.getScalingMatrix(dir * move, dir * move, 0);
-                doStep(scale, false);
+                var mat = Constants.getScalingMatrix(dir * move, dir * move, 0);
+                doStep(mat, true);
         }
 
 	private void doStep(Matrix4x4 mat, boolean needsPivot) {
