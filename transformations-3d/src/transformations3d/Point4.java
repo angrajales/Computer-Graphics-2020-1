@@ -1,11 +1,11 @@
 package transformations3d;
 /**
- * 
  * @author Anderson Grajales Alzate
  * @author Stiven Ramírez Arango
- * @date 14/02/2020
+ * @date 08/03/2020
  * @version 1.0
  */
+
 public class Point4 {
     
     double x, y, w, z;

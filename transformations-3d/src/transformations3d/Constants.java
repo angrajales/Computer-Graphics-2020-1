@@ -1,4 +1,11 @@
 package transformations3d;
+/**
+ * @author Anderson Grajales Alzate
+ * @author Stiven Ramírez Arango
+ * @date 08/03/2020
+ * @version 1.0
+ */
+
 import static java.lang.Math.*;
 public class Constants {
 	public static final int MAX_WIDTH = 1000;

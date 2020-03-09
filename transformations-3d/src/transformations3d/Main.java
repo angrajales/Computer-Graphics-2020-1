@@ -1,5 +1,12 @@
 package transformations3d;
 
+/**
+ * @author Anderson Grajales Alzate
+ * @author Stiven Ramírez Arango
+ * @date 08/03/2020
+ * @version 1.0
+ */
+
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -29,8 +36,8 @@ public class Main extends JPanel implements KeyListener {
 
 	public Main() {
 		this.setFocusable(true);
-        this.requestFocusInWindow();
-        this.addKeyListener(this);
+		this.requestFocusInWindow();
+		this.addKeyListener(this);
 	}
 
 	@Override
@@ -60,9 +67,10 @@ public class Main extends JPanel implements KeyListener {
 		var w = getActualWidth();
 		var h = getActualHeight();
 		g2d.setColor(Color.yellow);
-		//g2d.drawLine(w / 2, 0, w / 2, h);
-		//g2d.drawLine(0, h / 2, w, h / 2);
-		if(edges.size() == 0) readFile();
+		// g2d.drawLine(w / 2, 0, w / 2, h);
+		// g2d.drawLine(0, h / 2, w, h / 2);
+		if (edges.size() == 0)
+			readFile();
 		paint();
 	}
 
@@ -106,98 +114,99 @@ public class Main extends JPanel implements KeyListener {
 			var pp2 = Matrix4x4.times(projectionMatrix, p2).normalize();
 			var w = getActualWidth();
 			var h = getActualHeight();
-			g2d.drawLine(w / 2 + toInt(pp1.x),
-					h / 2 - toInt(pp1.y),
-					w / 2 + toInt(pp2.x),
-					h / 2 - toInt(pp2.y));
+			g2d.drawLine(w / 2 + toInt(pp1.x), h / 2 - toInt(pp1.y), w / 2 + toInt(pp2.x), h / 2 - toInt(pp2.y));
 		});
 	}
-	
+
 	private void compile(char key) {
-		if(key == 'o' || key == 'O') {
+		if (key == 'o' || key == 'O') {
 			rotateZ(false);
 		}
-		if(key == 'l' || key == 'L') {
+		if (key == 'l' || key == 'L') {
 			rotateZ(true);
 		}
-		if(key == 'u' || key == 'U') {
+		if (key == 'u' || key == 'U') {
 			rotateX(false);
 		}
-		if(key == 'j' || key == 'J') {
+		if (key == 'j' || key == 'J') {
 			rotateX(true);
 		}
-		if(key == 'i' || key == 'I') {
+		if (key == 'i' || key == 'I') {
 			rotateY(false);
 		}
-		if(key == 'k' || key == 'K') {
+		if (key == 'k' || key == 'K') {
 			rotateY(true);
 		}
-		if(key == 'a' || key == 'A') {
+		if (key == 'a' || key == 'A') {
 			translateX(-1);
 		}
-		if(key == 'd' || key == 'D') {
+		if (key == 'd' || key == 'D') {
 			translateX(1);
 		}
-		if(key == 'w' || key == 'w') {
+		if (key == 'w' || key == 'w') {
 			translateY(1);
 		}
-		if(key == 's' || key == 's') {
+		if (key == 's' || key == 's') {
 			translateY(-1);
 		}
-		if(key == 'x' || key == 'X') {
+		if (key == 'x' || key == 'X') {
 			leavePlane(-1);
 		}
-		if(key == 'z' || key == 'Z') {
+		if (key == 'z' || key == 'Z') {
 			leavePlane(1);
 		}
-		if(key == 'y' || key == 'Y') {
+		if (key == 'y' || key == 'Y') {
 			doScale(true);
 		}
-		if(key == 'h' || key == 'H') {
+		if (key == 'h' || key == 'H') {
 			doScale(false);
 		}
 	}
 
 	private void rotateZ(boolean clockwise) {
 		Matrix4x4 mat = null;
-		if(clockwise) {
+		if (clockwise) {
 			mat = Constants.getRotationMatrixZ(theta);
-		}else {
+		} else {
 			mat = Constants.getRotationMatrixZ_(theta);
 		}
 		doStep(mat, true);
 	}
+
 	private void rotateX(boolean clockwise) {
 		Matrix4x4 mat = null;
-		if(clockwise) {
+		if (clockwise) {
 			mat = Constants.getRotationMatrixX(theta);
-		}else {
+		} else {
 			mat = Constants.getRotationMatrixX_(theta);
 		}
 		doStep(mat, true);
 	}
+
 	private void rotateY(boolean clockwise) {
 		Matrix4x4 mat = null;
-		if(clockwise) {
+		if (clockwise) {
 			mat = Constants.getRotationMatrixY(theta);
-		}else {
+		} else {
 			mat = Constants.getRotationMatrixY_(theta);
 		}
 		doStep(mat, true);
 	}
+
 	private void translateX(double dir) {
 		var transX = Constants.getTranslationMatrix(dir * move, 0, 0);
 		doStep(transX, false);
 	}
+
 	private void translateY(double dir) {
 		var transY = Constants.getTranslationMatrix(0, dir * move, 0);
 		doStep(transY, false);
 	}
+
 	private void leavePlane(double dir) {
 		projectionDistance += (dir * move);
 		repaint();
 	}
-	
 
 	private void doStep(Matrix4x4 mat, boolean needsPivot) {
 		if (needsPivot) {
@@ -210,7 +219,6 @@ public class Main extends JPanel implements KeyListener {
 		}
 		repaint();
 	}
-	
 
 	private Point4 getPivot() {
 		double minX = Double.MAX_VALUE;
@@ -247,15 +255,16 @@ public class Main extends JPanel implements KeyListener {
 			var transP2 = Matrix4x4.times(translationMatrix, edge.p2);
 			edge.p1 = transP1;
 			edge.p2 = transP2;
-		});	
+		});
 	}
-	
+
 	private void doScale(boolean bigger) {
 		Point4 pivot = getPivot();
 		double pure = bigger ? (1.1) : (0.9);
 		Matrix4x4 mat = Constants.getScalingMatrix(pure, pure, pure, pivot);
 		doStep(mat, false);
 	}
+
 	private void doTransformation(Matrix4x4 mat) {
 		edges.forEach(edge -> {
 			var transP1 = Matrix4x4.times(mat, edge.p1);
