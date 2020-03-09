@@ -67,8 +67,8 @@ public class Main extends JPanel implements KeyListener {
 		var w = getActualWidth();
 		var h = getActualHeight();
 		g2d.setColor(Color.yellow);
-		// g2d.drawLine(w / 2, 0, w / 2, h);
-		// g2d.drawLine(0, h / 2, w, h / 2);
+		g2d.drawLine(w / 2, 0, w / 2, h);
+		g2d.drawLine(0, h / 2, w, h / 2);
 		if (edges.size() == 0)
 			readFile();
 		paint();

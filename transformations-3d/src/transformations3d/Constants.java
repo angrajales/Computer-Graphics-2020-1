@@ -70,22 +70,22 @@ public class Constants {
 	public static final Matrix4x4 getRotationMatrixY_(double thetap) {
 		double theta = toRadians(thetap);
 		yRotationMatrix_.matrix[1][1] = 1;
-		yRotationMatrix_.matrix[2][1] = sin(theta);
+		yRotationMatrix_.matrix[0][2] = sin(theta);
 		yRotationMatrix_.matrix[2][2] = cos(theta);
 		yRotationMatrix_.matrix[3][3] = 1;
 		yRotationMatrix_.matrix[0][0] = cos(theta);
-		yRotationMatrix_.matrix[0][2] = -sin(theta);
+		yRotationMatrix_.matrix[2][0] = -sin(theta);
 		return yRotationMatrix_;
 	}
 	private static Matrix4x4 yRotationMatrix = new Matrix4x4();
 	public static final Matrix4x4 getRotationMatrixY(double thetap) {
 		double theta = toRadians(thetap);
 		yRotationMatrix.matrix[1][1] = 1;
-		yRotationMatrix.matrix[2][1] = -sin(theta);
+		yRotationMatrix.matrix[0][2] = -sin(theta);
 		yRotationMatrix.matrix[2][2] = cos(theta);
 		yRotationMatrix.matrix[3][3] = 1;
 		yRotationMatrix.matrix[0][0] = cos(theta);
-		yRotationMatrix.matrix[0][2] = sin(theta);
+		yRotationMatrix.matrix[2][0] = sin(theta);
 		return yRotationMatrix;
 	}
 	private static Matrix4x4 scalingMatrix = new Matrix4x4();
