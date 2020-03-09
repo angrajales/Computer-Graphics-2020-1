@@ -81,6 +81,17 @@ public class Constants {
 		yRotationMatrix.matrix[0][2] = sin(theta);
 		return yRotationMatrix;
 	}
+	private static Matrix4x4 scalingMatrix = new Matrix4x4();
+	public static final Matrix4x4 getScalingMatrix(double tx, double ty, double tw, Point4 pivot) {
+		scalingMatrix.matrix[0][0] = tx;
+		scalingMatrix.matrix[1][1] = ty;
+		scalingMatrix.matrix[2][2] = tw;
+		scalingMatrix.matrix[3][3] = 1;
+		scalingMatrix.matrix[0][3] = (1 - tx) * pivot.x;
+		scalingMatrix.matrix[1][3] = (1 - ty) * pivot.y;
+		scalingMatrix.matrix[2][3] = (1 - tw) * pivot.w;
+		return scalingMatrix;
+	}
 	
 	private static Matrix4x4 translationMatrix = new Matrix4x4();
 	public static final Matrix4x4 getTranslationMatrix(double tx, double ty, double tw) {

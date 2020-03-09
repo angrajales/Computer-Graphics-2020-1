@@ -24,6 +24,7 @@ public class Main extends JPanel implements KeyListener {
 	private ArrayList<Edge> edges = new ArrayList<Main.Edge>();
 	private double theta = 10.; // grades
 	private double move = 10.; // move
+	private double scale = 10.; // move
 	private Graphics2D g2d;
 
 	public Main() {
@@ -59,8 +60,8 @@ public class Main extends JPanel implements KeyListener {
 		var w = getActualWidth();
 		var h = getActualHeight();
 		g2d.setColor(Color.yellow);
-		g2d.drawLine(w / 2, 0, w / 2, h);
-		g2d.drawLine(0, h / 2, w, h / 2);
+		//g2d.drawLine(w / 2, 0, w / 2, h);
+		//g2d.drawLine(0, h / 2, w, h / 2);
 		if(edges.size() == 0) readFile();
 		paint();
 	}
@@ -149,6 +150,12 @@ public class Main extends JPanel implements KeyListener {
 		if(key == 'z' || key == 'Z') {
 			leavePlane(1);
 		}
+		if(key == 'y' || key == 'Y') {
+			doScale(true);
+		}
+		if(key == 'h' || key == 'H') {
+			doScale(false);
+		}
 	}
 
 	private void rotateZ(boolean clockwise) {
@@ -226,9 +233,7 @@ public class Main extends JPanel implements KeyListener {
 			maxW = Math.max(maxW, edge.p1.w);
 			maxW = Math.max(maxW, edge.p2.w);
 		}
-		System.out.println(maxY + " " + minY);
-		Point4 res = new Point4(maxX - (maxX - minX) / 2, maxY - (maxY - minY) / 2, maxW - (maxW - minW) / 2, 1);
-		System.out.println(res);
+		Point4 res = new Point4((maxX - (maxX - minX) / 2), (maxY - (maxY - minY) / 2), (maxW - (maxW - minW) / 2), 1);
 		return res;
 	}
 
@@ -244,7 +249,13 @@ public class Main extends JPanel implements KeyListener {
 			edge.p2 = transP2;
 		});	
 	}
-
+	
+	void doScale(boolean bigger) {
+		Point4 pivot = getPivot();
+		double pure = bigger ? (1.1) : (0.9);
+		Matrix4x4 mat = Constants.getScalingMatrix(pure, pure, pure, pivot);
+		doStep(mat, false);
+	}
 	private void doTransformation(Matrix4x4 mat) {
 		edges.forEach(edge -> {
 			var transP1 = Matrix4x4.times(mat, edge.p1);
