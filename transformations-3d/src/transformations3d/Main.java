@@ -110,11 +110,11 @@ public class Main extends JPanel implements KeyListener {
 		edges.forEach(edge -> {
 			var p1 = edge.p1;
 			var p2 = edge.p2;
-			var pp1 = Matrix4x4.times(projectionMatrix, p1).normalize();
-			var pp2 = Matrix4x4.times(projectionMatrix, p2).normalize();
+			var pp1 = Matrix4x4.times(projectionMatrix, p1);
+			var pp2 = Matrix4x4.times(projectionMatrix, p2);
 			var w = getActualWidth();
 			var h = getActualHeight();
-			g2d.drawLine(w / 2 + toInt(pp1.x), h / 2 - toInt(pp1.y), w / 2 + toInt(pp2.x), h / 2 - toInt(pp2.y));
+			g2d.drawLine(w / 2 + toInt(pp1.x * projectionDistance / pp1.w), h / 2 - toInt(pp1.y * projectionDistance / pp1.w), w / 2 + toInt(pp2.x * projectionDistance / pp2.w), h / 2 - toInt(pp2.y * projectionDistance / pp2.w));
 		});
 	}
 
@@ -242,7 +242,7 @@ public class Main extends JPanel implements KeyListener {
 			maxW = Math.max(maxW, edge.p2.w);
 		}
 		Point4 res = new Point4((maxX - (maxX - minX) / 2), (maxY - (maxY - minY) / 2), (maxW - (maxW - minW) / 2), 1);
-		return res;
+		return res.normalize();
 	}
 
 	private void doTranslate(Point4 pivot, double reverse) {
