@@ -9,6 +9,9 @@ import Math.Point;
 import Math.Vector4;
 import Math.Ray;
 import Math.UVCoordinates;
+import static Math.Vector4.dotProduct;
+import static java.lang.Math.max;
+import static java.lang.Math.pow;
 
 /**
  *
@@ -53,14 +56,14 @@ public class Shader {
             }
         }
         // Compute the Specular Reflection
-        for(PointLight pl: Scene.pointLights) {
+        for (PointLight pl : Scene.pointLights) {
             Vector4 light = new Vector4(pl.point, point);
             Vector4 r = Vector4.reflection(light, normal);
             r.normalize();
             Vector4 v = new Vector4(point, new Point(0, 0, 0));
             v.normalize();
             // *** Insert your code here ***
-            Colour SpecularReflection = new Colour(0, 0, 0);
+            Colour SpecularReflection = Colour.multiply(pl.color, pow(max(dotProduct(v, r), 0), material.n) * material.Ks);
             acum = Colour.add(acum, SpecularReflection);
         }
         
