@@ -34,8 +34,8 @@ public class Shader {
             // insert your code here
             double u = uvc.getU();
             double v = uvc.getV();
-            //Swap u and v
-            // tv = 1 - v because we need to
+            //Swap u and v .... AND
+            // tv = 1 - v because we need to see the image on reverse order according to ppm
             objectColor = material.image.getPixel(1 - v, uvc.getU());
         }
         // Compute the Ambient Reflection

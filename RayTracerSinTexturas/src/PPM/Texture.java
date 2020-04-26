@@ -58,6 +58,7 @@ public class Texture {
         /*
         insert your code here
         */
+        // s and t normalized (0..1): just multiply by width and height
         return image[(int)(numRows * s)][(int)(numColumns * t)];
     }
 
