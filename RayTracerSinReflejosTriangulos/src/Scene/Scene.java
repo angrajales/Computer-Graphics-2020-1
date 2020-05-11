@@ -97,7 +97,7 @@ public class Scene {
                 Ray reflectedRay = new Ray(p, direction);
                 // send the ray to intersect with objects in the scene (Scene.intersectRay(reflectedRay))
                 // (this is where recursion takes place)
-                Colour reflectedColor = new Colour(0, 0, 0);
+                Colour reflectedColor = Scene.intersectRay(reflectedRay);
                 // multiply the color by the corresponding Weight (Kr) 
                 reflectedColor = Colour.multiply(reflectedColor, Kr);
                 // and add the color to acum

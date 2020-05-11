@@ -73,10 +73,27 @@ public class Triangle implements Intersectable {
      */
     @Override
     public Solutions intersect(Ray ray) {
-        Solutions solution = new Solutions(0, 0, 0);
-        // Insert your code here
-        
-        return solution;
+        ThreeByThreeSystem equation = new ThreeByThreeSystem(
+                new double[][]{
+                    {ray.u.getX(), this.v1.getX() - this.v2.getX(), this.v1.getX() - this.v3.getX()},
+                    {ray.u.getY(), this.v1.getY() - this.v2.getY(), this.v1.getY() - this.v3.getY()},
+                    {ray.u.getZ(), this.v1.getZ() - this.v2.getZ(), this.v1.getZ() - this.v3.getZ()}},
+                new double[]{this.v1.getX() - ray.p0.getX(),
+                    this.v1.getY() - ray.p0.getY(),
+                    this.v1.getZ() - ray.p0.getZ()});
+
+        double[] results = equation.computeSystem();
+
+        double S = results[0];
+        double beta = results[1];
+        double gamma = results[2];
+        double alpha = 1 - beta - gamma;
+    
+        if ((alpha > 0 && alpha < 1) && (beta > 0 && beta < 1) && (gamma > 0 && gamma < 1)) {
+            return new Solutions(1, S, 0);
+        } else {
+            return new Solutions(0, 0, 0);
+        }
     }
     
     /**
