@@ -45,7 +45,7 @@ public class Main extends JPanel {
     
     /**
      * Create all elements in the scene
-     * Could be read from a text file
+     * Could be read from a text filetatus
      */
     public void createScene() {
         AmbientLight al = new AmbientLight(new Colour(.2, .2, .2));

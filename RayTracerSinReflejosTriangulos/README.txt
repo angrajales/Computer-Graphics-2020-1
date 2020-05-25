@@ -1,4 +1,6 @@
-Es un proyecto realizado en Intellij IDEA. 
+Se está solucionando el punto 1.
+
+Es un proyecto realizado en Intellij IDEA.
 
 Para compilarlo:
 
